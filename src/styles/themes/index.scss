@@ -1,0 +1,10 @@
+@use 'sass:string';
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      typography: string.unquote('var(--font-family)'),
+    )
+  );
+}

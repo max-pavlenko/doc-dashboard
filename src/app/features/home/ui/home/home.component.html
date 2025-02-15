@@ -1,0 +1,14 @@
+<div class="min-h-screen grid place-content-center gap-4">
+  <h1 class="text-lg text-center text-pretty">Home page. To be done 😉. Meanwhile, go to...</h1>
+  <div class="grid justify-items-center flex-wrap gap-3">
+    <div class="flex gap-3 flex-wrap justify-center">
+      <b [class.available-links]="!authService.isAuthenticated()">If not logged in</b>
+      <app-link href="/log-in">Log in ↗</app-link>
+      <app-link href="/sign-up">Sign up ↗</app-link>
+    </div>
+    <div class="flex gap-3 flex-wrap justify-center">
+      <b [class.available-links]="authService.isAuthenticated()">If logged in</b>
+      <app-link href="/documents">Documents ↗</app-link>
+    </div>
+  </div>
+</div>

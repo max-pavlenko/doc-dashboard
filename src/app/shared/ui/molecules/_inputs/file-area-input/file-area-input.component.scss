@@ -1,0 +1,7 @@
+:host.ng-invalid.ng-touched {
+  .container {
+    border-color: var(--color-red-600);
+    background-color: var(--color-red-50);
+    color: var(--color-red-700);
+  }
+}

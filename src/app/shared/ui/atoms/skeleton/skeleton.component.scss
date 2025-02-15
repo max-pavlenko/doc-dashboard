@@ -1,0 +1,27 @@
+.loading-block {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: rgb(237, 237, 237);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 40%;
+    min-width: 40px;
+    height: 100%;
+    background: linear-gradient(90deg, rgb(237, 237, 237), rgb(227, 225, 225), rgb(237, 237, 237));
+    animation: absolute-positioning 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes absolute-positioning {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

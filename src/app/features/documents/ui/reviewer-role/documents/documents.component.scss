@@ -1,0 +1,12 @@
+@use '../../../../../../styles/mixins';
+
+:host {
+  ::ng-deep {
+    & .mat-column-actions {
+      max-width: 70px !important;
+    }
+    & .mat-mdc-header-cell {
+      font-weight: bold !important;
+    }
+  }
+}

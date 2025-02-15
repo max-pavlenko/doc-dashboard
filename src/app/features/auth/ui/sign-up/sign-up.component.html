@@ -1,0 +1,35 @@
+<div class="flex items-center justify-center min-h-screen bg-[url(/assets/images/auth-bg.jpg)]">
+  <mat-card class="w-96 mx-3 !bg-white/22 backdrop-blur-md p-6 rounded-lg !shadow-lg border !border-violet-400/20">
+    <form class="text-white grid gap-3" [formGroup]="form" (ngSubmit)="signUpUser()">
+      <h2 class="text-2xl mb-2 font-bold text-center">Sign up a user</h2>
+
+      <div class="grid gap-3 text-white">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+          <mat-icon matSuffix>alternate_email</mat-icon>
+          <mat-error>{{ form.controls.email.errors | errorMessage }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Full Name</mat-label>
+          <input formControlName="fullName" matInput />
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-error>{{ form.controls.fullName.errors | errorMessage }}</mat-error>
+        </mat-form-field>
+        <app-password-input controlName="password"></app-password-input>
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select placeholder="Role" formControlName="role">
+            <mat-option [value]="UserRole.User">User</mat-option>
+            <mat-option [value]="UserRole.Reviewer">Reviewer</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <app-light-button [isLoading]="isLoading()"> Register </app-light-button>
+      <p class="text-center text-sm mt-2">
+        Already have an account? <a routerLink="/log-in" class="font-bold hover:underline">Login</a>
+      </p>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,104 @@
+<app-pdf-view></app-pdf-view>
+
+<div class="p-4 min-h-screen">
+  <form class="flex flex-col-reverse md:flex-row mb-5 gap-4 items-center" [formGroup]="filterForm">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Creator email</mat-label>
+      <input matInput formControlName="creatorEmail" />
+    </mat-form-field>
+    <div class="flex gap-2">
+      <button type="button" class="!min-w-max" mat-stroked-button (click)="onLogOut()">Log out</button>
+    </div>
+  </form>
+
+  @let areDocumentsExistent = dataSource.data.length > 0;
+  @if (isLoading()) {
+    <app-loading-table [amount]="{ rows: paginationService.pagination().size, columns: 5 }"></app-loading-table>
+  } @else if (!areDocumentsExistent) {
+    <div class="grid h-[50vh] text-center place-content-center text-slate-800 gap-4">
+      <span class="text-2xl">No documents found. 🙄</span>
+    </div>
+  }
+  <div [class.hidden]="isLoading() || !areDocumentsExistent">
+    <div class="md:hidden mb-3 grid gap-3">
+      @for (document of dataSource.data; track document.id) {
+        <app-mobile-card>
+          <ng-container primary>
+            <h2 class="text-lg truncate font-semibold text-violet-900">{{ document.name }}</h2>
+            <mat-chip class="px-2 py-1 text-xs font-medium rounded bg-slate-100 text-violet-800">
+              {{ document.status | documentStatus }}
+            </mat-chip>
+          </ng-container>
+          <ng-container secondary>
+            <p>Creator: {{ document.creator?.fullName }}</p>
+            <p>Creator email: {{ document.creator?.email }}</p>
+            <p>Created: {{ document.createdAt | date: 'medium' }}</p>
+            <p>Updated: {{ document.updatedAt | date: 'medium' }}</p>
+          </ng-container>
+          <ng-container menu>
+            <app-documents-reviewer-menu
+              [document]="document"
+              (statusChanged)="manageReviewerMenuEvent($event, document)"></app-documents-reviewer-menu>
+          </ng-container>
+        </app-mobile-card>
+      }
+    </div>
+
+    <mat-table class="!hidden md:!block" matSort [dataSource]="dataSource" (matSortChange)="onSortChange($event)">
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+      <ng-container matColumnDef="creator">
+        <mat-header-cell *matHeaderCellDef>Creator</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="truncate">
+            {{ element.creator.fullName }}
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="creator_email">
+        <mat-header-cell *matHeaderCellDef>Creator email</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="truncate">
+            {{ element.creator.email }}
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>File name</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="truncate">
+            {{ element.name }}
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-chip>{{ element.status | documentStatus }}</mat-chip>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="updatedAt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Updated at</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.updatedAt | date: 'short' }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="actionsMenu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #actionsMenu="matMenu">
+            <app-documents-reviewer-menu
+              [document]="element"
+              (statusChanged)="manageReviewerMenuEvent($event, element)"></app-documents-reviewer-menu>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+    </mat-table>
+    <app-paginator></app-paginator>
+    <div class="m-2 text-white">Current user role: {{ authService.userRole() }}</div>
+  </div>
+</div>

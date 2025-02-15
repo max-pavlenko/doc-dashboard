@@ -1,0 +1,23 @@
+@use 'variables';
+@use 'themes/index';
+@use 'ng-mat-reset';
+@use 'tailwindcss';
+@import url('https://fonts.cdnfonts.com/css/google-sans');
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  @apply bg-gradient-to-br from-violet-500 to-slate-300 min-h-[100svh] bg-violet-50;
+}
+
+body,
+html {
+  min-height: 100svh;
+}
+
+* {
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s linear;
+}

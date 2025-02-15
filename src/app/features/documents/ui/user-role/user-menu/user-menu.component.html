@@ -1,0 +1,44 @@
+<button
+  mat-menu-item
+  [matTooltip]="tooltipTexts.edit"
+  [matTooltipDisabled]="isActionAvailable(EntityMutation.Edit)"
+  [disabled]="!isActionAvailable(EntityMutation.Edit)"
+  (click)="onEdit()">
+  <mat-icon>edit</mat-icon>
+  <span>Edit</span>
+</button>
+
+<button
+  mat-menu-item
+  [matTooltip]="tooltipTexts.readyForReview"
+  [matTooltipDisabled]="isActionAvailable(DocumentStatus.ReadyForReview)"
+  [disabled]="!isActionAvailable(DocumentStatus.ReadyForReview)"
+  (click)="markAsReadyForReview()">
+  <mat-icon>rate_review</mat-icon>
+  <span>Ready for review</span>
+</button>
+
+<button mat-menu-item (click)="openFile()">
+  <mat-icon>insert_drive_file</mat-icon>
+  <span>Open file</span>
+</button>
+
+<button
+  mat-menu-item
+  [matTooltip]="tooltipTexts.revoke"
+  [matTooltipDisabled]="isActionAvailable(DocumentStatus.Revoked)"
+  [disabled]="!isActionAvailable(DocumentStatus.Revoked)"
+  (click)="onRevoke()">
+  <mat-icon>restart_alt</mat-icon>
+  <span>Revoke</span>
+</button>
+
+<button
+  mat-menu-item
+  [matTooltip]="tooltipTexts.delete"
+  [matTooltipDisabled]="isActionAvailable(EntityMutation.Delete)"
+  [disabled]="!isActionAvailable(EntityMutation.Delete)"
+  (click)="onDelete()">
+  <mat-icon>delete</mat-icon>
+  <span>Delete</span>
+</button>

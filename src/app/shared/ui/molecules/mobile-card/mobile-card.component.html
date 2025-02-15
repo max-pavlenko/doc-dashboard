@@ -1,0 +1,24 @@
+<mat-card class="w-full p-4">
+  <div class="flex justify-between items-center mb-2">
+    <ng-content select="[primary]"></ng-content>
+  </div>
+
+  <div class="text-gray-600 text-sm mb-2">
+    <ng-content select="[secondary]"></ng-content>
+  </div>
+
+  <div class="text-xs text-gray-500 mb-4">
+    <ng-content select="[tertiary]"></ng-content>
+  </div>
+
+  @if (isWithMenu()) {
+    <div class="flex">
+      <button #trigger class="w-full" mat-stroked-button [matMenuTriggerFor]="menu">Actions</button>
+      <mat-menu #menu="matMenu">
+        <div [style.width.px]="trigger._elementRef.nativeElement.clientWidth">
+          <ng-content select="[menu]"></ng-content>
+        </div>
+      </mat-menu>
+    </div>
+  }
+</mat-card>

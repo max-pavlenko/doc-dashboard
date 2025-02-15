@@ -1,0 +1,22 @@
+<div class="flex items-center justify-center min-h-screen bg-[url(/assets/images/auth-bg.jpg)]">
+  <mat-card class="w-96 mx-3 !bg-white/22 backdrop-blur-md p-6 rounded-lg !shadow-lg border !border-violet-400/20">
+    <form class="text-white gap-3 grid" [formGroup]="form" (ngSubmit)="logIn()">
+      <h2 class="text-2xl mb-2 font-bold text-center">Log in</h2>
+
+      <div class="grid gap-3">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-error>{{ form.controls.email.errors | errorMessage }}</mat-error>
+        </mat-form-field>
+        <app-password-input></app-password-input>
+      </div>
+
+      <app-light-button [isLoading]="isLoading()"> Log in </app-light-button>
+      <p class="text-center text-sm mt-2">
+        Don't have an account? <a routerLink="/sign-up" class="font-bold hover:underline">Register</a>
+      </p>
+    </form>
+  </mat-card>
+</div>

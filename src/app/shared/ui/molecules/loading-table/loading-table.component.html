@@ -1,0 +1,15 @@
+<div
+  class="grid gap-y-2 gap-x-3 auto-rows-12"
+  [ngStyle]="{ 'grid-template-columns': isMobile ? '1fr' : 'repeat(' + amount().columns + ', 1fr)' }">
+  @if (isMobile) {
+    @for (row of amountsMap().rows; track row) {
+      <app-skeleton class="h-40"></app-skeleton>
+    }
+  } @else {
+    @for (row of amountsMap().rows; track row) {
+      @for (column of amountsMap().columns; track column) {
+        <app-skeleton class="h-12"></app-skeleton>
+      }
+    }
+  }
+</div>

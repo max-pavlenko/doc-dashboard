@@ -1,0 +1,15 @@
+<app-modal class="max-w-[26rem]">
+  <div class="font-bold flex gap-3 items-center" header>
+    <div class="p-2 bg-violet-100 text-indigo-800 w-min rounded-md grid">
+      <mat-icon>{{ data.icon ?? 'warning' }}</mat-icon>
+    </div>
+    {{ data.title }}
+  </div>
+  <div>
+    {{ data.description }}
+  </div>
+  <ng-container footer>
+    <button class="w-full" mat-stroked-button (click)="dialogRef.close(false)">{{ data.text?.cancel ?? 'Cancel' }}</button>
+    <button class="w-full" mat-flat-button (click)="dialogRef.close(true)">{{ data.text?.confirm ?? 'Confirm' }}</button>
+  </ng-container>
+</app-modal>

@@ -1,0 +1,11 @@
+<button
+  mat-flat-button
+  class="flex w-full disabled:!bg-gray-300 flex !font-bold !bg-purple-100 !text-purple-800 py-2 !rounded-md hover:bg-gray-200"
+  [disabled]="isDisabled() || isLoading()">
+  <div class="flex gap-3">
+    @if (isLoading()) {
+      <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+    }
+    <ng-content></ng-content>
+  </div>
+</button>

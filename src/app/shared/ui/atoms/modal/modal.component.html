@@ -1,0 +1,16 @@
+<div class="grid gap-4 md:px-6 md:py-5 px-4 py-4">
+  <div class="flex items-center justify-between md:text-xl text-lg">
+    <ng-content select="[header]"></ng-content>
+    @if (isWithCloseButton()) {
+      <button mat-icon-button (click)="dialogRef.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </div>
+  <div>
+    <ng-content></ng-content>
+  </div>
+  <div class="flex flex-col md:flex-row gap-3">
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</div>

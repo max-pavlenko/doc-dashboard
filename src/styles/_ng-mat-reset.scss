@@ -1,0 +1,20 @@
+.error-snackbar {
+  --mdc-snackbar-container-color: var(--color-red-900);
+}
+
+.mat-mdc-notch-piece.mdc-notched-outline__notch {
+  border-right: none !important;
+}
+
+.mat-mdc-dialog-surface.mdc-dialog__surface {
+  border-radius: var(--radius-md) !important;
+}
+
+.mat-mdc-dialog-container {
+  max-width: calc(100% - 2rem);
+}
+
+.mat-mdc-menu-panel {
+  margin-block-start: 8px;
+  max-width: fit-content !important;
+}

@@ -1,0 +1,38 @@
+<input
+  #fileInput
+  class="hidden"
+  type="file"
+  [multiple]="false"
+  [accept]="acceptableMimeTypes() | joinMimeTypes"
+  (change)="onFileInput($event)" />
+
+<div
+  class="container w-full hover:bg-slate-100 hover:border-indigo-500 border-2 border-violet-300 border-dashed p-4 rounded-lg text-center cursor-pointer"
+  [ngClass]="isDragOver() ? 'border-indigo-500 bg-slate-100' : ''"
+  (click)="fileInput.click(); onTouched()"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave()"
+  (drop)="onDrop($event)">
+  <mat-icon class="text-gray-500">cloud_upload</mat-icon>
+  <p class="text-gray-600">Click or drag file to upload</p>
+
+  @if (acceptableMimeTypes().length) {
+    <p class="text-gray-500 grid text-sm mt-2">
+      <span>Acceptable file types:</span>
+      <span class="text-violet-800">{{ acceptableMimeTypes() | join }}</span>
+    </p>
+  }
+  @if (file()) {
+    <div class="flex bg-indigo-200 rounded-md pl-2 mt-3 items-center justify-between">
+      <div class="flex items-center gap-2">
+        <mat-icon class="text-blue-500">insert_drive_file</mat-icon>
+        <span class="text-sm">{{ file()?.name }}</span>
+      </div>
+      <div>
+        <button type="button" mat-icon-button color="warn" (click)="$event.stopPropagation(); removeFile(fileInput)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  }
+</div>
