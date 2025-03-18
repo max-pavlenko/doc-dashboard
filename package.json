@@ -4,11 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run pspdfkit && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint:fix": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "pspdfkit": "shx cp -r node_modules/pspdfkit/dist/pspdfkit-lib/ src/assets/pspdfkit-lib"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +49,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "schematics-scss-migrate": "^2.3.17",
+    "shx": "^0.4.0",
     "typescript": "~5.7.2"
   },
   "lint-staged": {
