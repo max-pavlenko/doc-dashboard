@@ -12,7 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LocalStorageKey } from '@shared/models/local-storage.model';
 import { PasswordInputComponent } from '@shared/ui/molecules/_inputs/password-input/password-input.component';
 import { finalize, switchMap, tap } from 'rxjs';
-import { LightButtonComponent } from '@shared/ui/atoms/_buttons/light-button/light-button.component';
+import { ButtonComponent } from '@shared/ui/atoms/_buttons/button/button.component';
 
 @Component({
   selector: 'app-log-in',
@@ -28,7 +28,7 @@ import { LightButtonComponent } from '@shared/ui/atoms/_buttons/light-button/lig
     MatSuffix,
     ErrorMessagePipe,
     PasswordInputComponent,
-    LightButtonComponent,
+    ButtonComponent,
   ],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.scss',

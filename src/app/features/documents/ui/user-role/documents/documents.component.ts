@@ -117,9 +117,14 @@ export default class DocumentsComponent implements OnInit {
       this.paginationService.resetPagination();
     });
     combineLatest([this.paginationService.pagination$, this.sortService.sortParams$])
-      .pipe(debounceTime(TIME_MS.DEBOUNCE), takeUntilDestroyed(this.dr))
-      .subscribe(() => {
-        this.loadDocuments();
+      .pipe(
+        debounceTime(TIME_MS.DEBOUNCE),
+        switchMap(() => this.loadDocuments()),
+        takeUntilDestroyed(this.dr),
+      )
+      .subscribe(({ results, count }) => {
+        this.dataSource.data = results;
+        this.paginationService.totalItems.set(count);
       });
   }
 
@@ -135,11 +140,7 @@ export default class DocumentsComponent implements OnInit {
       .pipe(
         takeUntilDestroyed(this.dr),
         finalize(() => this.isLoading.set(false)),
-      )
-      .subscribe(({ results, count }) => {
-        this.dataSource.data = results;
-        this.paginationService.totalItems.set(count);
-      });
+      );
   }
 
   onCreateDocument() {

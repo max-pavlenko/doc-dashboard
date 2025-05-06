@@ -14,7 +14,7 @@ import { AuthService } from '@feature/auth/services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PasswordInputComponent } from '@shared/ui/molecules/_inputs/password-input/password-input.component';
 import { finalize, switchMap } from 'rxjs';
-import { LightButtonComponent } from '@shared/ui/atoms/_buttons/light-button/light-button.component';
+import { ButtonComponent } from '@shared/ui/atoms/_buttons/button/button.component';
 
 @Component({
   selector: 'app-sign-up',
@@ -32,7 +32,7 @@ import { LightButtonComponent } from '@shared/ui/atoms/_buttons/light-button/lig
     MatOption,
     MatSelect,
     PasswordInputComponent,
-    LightButtonComponent,
+    ButtonComponent,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',

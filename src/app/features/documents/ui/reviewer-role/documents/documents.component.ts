@@ -22,7 +22,7 @@ import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { combineLatest, debounceTime, finalize } from 'rxjs';
+import { combineLatest, debounceTime, finalize, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { DocumentService } from '@feature/documents/services/document.service';
@@ -101,9 +101,14 @@ export default class DocumentsComponent implements OnInit {
       this.paginationService.resetPagination();
     });
     combineLatest([this.paginationService.pagination$, this.sortService.sortParams$])
-      .pipe(debounceTime(TIME_MS.DEBOUNCE), takeUntilDestroyed(this.dr))
-      .subscribe(() => {
-        this.getDocuments();
+      .pipe(
+        debounceTime(TIME_MS.DEBOUNCE),
+        takeUntilDestroyed(this.dr),
+        switchMap(() => this.getDocuments()),
+      )
+      .subscribe(({ results, count }) => {
+        this.dataSource.data = results;
+        this.paginationService.totalItems.set(count);
       });
   }
 
@@ -119,11 +124,7 @@ export default class DocumentsComponent implements OnInit {
       .pipe(
         takeUntilDestroyed(this.dr),
         finalize(() => this.isLoading.set(false)),
-      )
-      .subscribe(({ results, count }) => {
-        this.dataSource.data = results;
-        this.paginationService.totalItems.set(count);
-      });
+      );
   }
 
   onLogOut() {

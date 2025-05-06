@@ -4,13 +4,13 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-light-button',
+  selector: 'app-button',
   imports: [MatButton, MatProgressSpinner],
-  templateUrl: './light-button.component.html',
-  styleUrl: './light-button.component.scss',
+  templateUrl: './button.component.html',
+  styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LightButtonComponent {
+export class ButtonComponent {
   isLoading = input(false);
   isDisabled = input(false);
 }
