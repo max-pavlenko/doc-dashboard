@@ -3,7 +3,7 @@ import { MatCard } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
-import { FormBuilder, FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LogInRequest } from '@feature/auth/models/auth.request';
 import { Router, RouterLink } from '@angular/router';
 import { ErrorMessagePipe } from '@shared/pipes/error-message/error-message.pipe';
@@ -12,7 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LocalStorageKey } from '@shared/models/local-storage.model';
 import { PasswordInputComponent } from '@shared/ui/molecules/_inputs/password-input/password-input.component';
 import { finalize, switchMap, tap } from 'rxjs';
-import { ButtonComponent } from '@shared/ui/atoms/_buttons/button/button.component';
+import { ButtonComponent } from '@shared/ui/atoms/button/button.component';
 
 @Component({
   selector: 'app-log-in',

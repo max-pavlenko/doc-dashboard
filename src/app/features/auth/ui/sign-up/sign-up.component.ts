@@ -4,7 +4,7 @@ import { MatCard } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { FormBuilder, FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { SignUpRequest } from '@feature/auth/models/auth.request';
 import { UserRole } from '@feature/auth/models/auth.model';
@@ -14,7 +14,7 @@ import { AuthService } from '@feature/auth/services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PasswordInputComponent } from '@shared/ui/molecules/_inputs/password-input/password-input.component';
 import { finalize, switchMap } from 'rxjs';
-import { ButtonComponent } from '@shared/ui/atoms/_buttons/button/button.component';
+import { ButtonComponent } from '@shared/ui/atoms/button/button.component';
 
 @Component({
   selector: 'app-sign-up',
